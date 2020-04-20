@@ -1,29 +1,39 @@
   <script>
     import { navigate } from "svelte-routing";
+    import Icon from "fa-svelte";
+    import {
+      faInstagram,
+      faTelegramPlane,
+      faLinkedinIn,
+    } from '@fortawesome/free-brands-svg-icons';
+    import {
+      INSTAGRAM_LINK,
+      LINKEDIN_LINK,
+      TELEGRAM_LINK,
+    } from '../static/constants';
 
     const goToNested = () => {
       navigate("/about", { replace: true });
     }
-    const [instagramIcon, telegramIcon, githubIcon] = [
-      'images/entrance/Icon_Insta.png',
-      'images/entrance/Icon_TG.png',
-      'images/entrance/Icon_GH.png'
-    ];
-    console.log('instagram', instagramIcon)
 
   </script> 
 
   <div class="imageWelcome" style="background-image: url('images/entrance/000040.JPG')">
     <div class="infoDiv">
       <p class="homeText">KOSTIK PHOTOKROF</p>
-      <button class="enterButton" on:click={goToNested}>
-      Come in
-      </button>
+      <div>
+        <button class="enterButton" on:click={goToNested}>
+        Come in
+        </button>
+        <button class="enterButton" on:click={goToNested}>
+        Contact me
+        </button>
+      </div>
     </div>
     <div class="socialMediaDiv">
-      <a href="InstagramLink"><img src={instagramIcon} alt="instaClick"></a>
-      <a href="TelegramLink"><img src={telegramIcon} alt="telegaClick"></a>
-      <a href="GitHubLink"><img src={githubIcon} alt="gitHubClick"></a>
+      <a class="mediaIcon" href={TELEGRAM_LINK}><Icon icon={faTelegramPlane} /></a>
+      <a class="mediaIcon" href={LINKEDIN_LINK}><Icon icon={faLinkedinIn} /></a>
+      <a class="mediaIcon" href={INSTAGRAM_LINK}><Icon icon={faInstagram} /></a>
     </div>
   </div>
 
@@ -56,13 +66,13 @@
       position: absolute;
       top: 40vh; 
       right: 5vw;
+      font-size: 2.5em;
+      color: white;
     }
 
-    .socialMediaDiv img {
-      height: 40px;
-      width: 40px;
-      margin: 0.5em;
-      /* color: white; */
+    .mediaIcon {
+      margin: 0.3em;
+      color: inherit;
     }
 
     .infoDiv {
