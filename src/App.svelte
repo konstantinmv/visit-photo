@@ -1,18 +1,40 @@
 <script>
-  import { Router, Route } from "svelte-routing";
+  import { GRouter } from "svelte-grouter";
 
-	import Nested from './Nested.svelte';
+  import Gallery from './Gallery.svelte';
   import Home from './Home.svelte';
+  import Navbar from './Navbar.svelte';
+  import About from './About.svelte';
+  import Projects from './Projects.svelte';
+  import Notes from './Notes.svelte';
 
-	export let name;
-	name = '<h2>Valera</h2>';
+  const routes = {
+  	home: {
+  		path: '/',
+  		component: Home,
+  	},
+  	gallery: {
+  		path: '/gallery',
+  		component: Gallery,
+  	},
+  	about: {
+  		path: '/about',
+  		component: About,
+  	},
+  	projects: {
+  		path: '/projects',
+  		component: Projects,
+  	},
+  	notes: {
+  		path: '/notes',
+  		component: Notes,
+  	}
+    
+  };
   
-  export let url = "";
-
   </script>
-    <Router url="{url}">
-      <div>
-        <Route path="/"><Home /></Route>
-        <Route path="about" component={Nested} />
-      </div>
-    </Router>
+
+    <div>
+      <Navbar />
+      <GRouter {routes} />
+    </div>
