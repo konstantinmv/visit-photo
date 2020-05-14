@@ -28,8 +28,11 @@
   	notes: {
   		path: '/notes',
   		component: Notes,
-  	}
-    
+  	},
+  	default: {
+			path: "*",
+			redirectTo: 'home',
+		}
   };
   
   </script>

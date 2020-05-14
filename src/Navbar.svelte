@@ -5,6 +5,16 @@ import Gallery from './Gallery.svelte';
 import Projects from './Projects.svelte';
 import Notes from './Notes.svelte';
 
+import Icon from "fa-svelte";
+import {
+	faTelegramPlane,
+	faLinkedinIn,
+} from '@fortawesome/free-brands-svg-icons';
+import {
+	TELEGRAM_LINK,
+	LINKEDIN_LINK,
+} from '../static/constants';
+
 const routes = {
 	about: {
 		path: '/about',
@@ -30,6 +40,10 @@ const navItems = [
 	{ label: "Projects", route: routes.projects, path: "/projects" },
 	{ label: "Notes", route: routes.notes, path: "/notes" },
 ];
+const contactIcons = [
+	{ href: TELEGRAM_LINK, icon: faTelegramPlane },
+	{ href: LINKEDIN_LINK, icon: faLinkedinIn },
+];
 let displayedNavItems = [];
 
 export let visible;
@@ -42,7 +56,12 @@ $: displayedNavItems = [...navItems].filter((nav) => nav.path !== $currentRoute.
 {#if visible}
 <nav class="navBar">
 	<div>
-		<ul>
+		<ul class="right">
+			{#each contactIcons as icon}
+				<a class="mediaIcon" href={icon.href}><Icon icon={icon.icon} /></a>
+			{/each}
+		</ul>
+		<ul class="left">
 		{#each displayedNavItems as item}
 			<li>
 				<Link route={item.route}>{item.label}</Link>
@@ -61,7 +80,7 @@ $: displayedNavItems = [...navItems].filter((nav) => nav.path !== $currentRoute.
 		background-color: #282423;
 	}
 
-	ul {
+	.left {
 		height: 5vh;
 		display: flex;
 		justify-content: flex-end;
@@ -69,11 +88,20 @@ $: displayedNavItems = [...navItems].filter((nav) => nav.path !== $currentRoute.
 		margin: 0;
 	}
 
+	.right {
+		margin: 0 auto;
+		position: absolute;
+		top: 2vh;
+		width: 10vw;
+	}
+
+	.mediaIcon {
+		padding: 0.5em;
+		font-size: 1.5em;
+	}
+
 	nav :global(a) {
 		text-decoration: none;
-		/* display: block;
-		text-align: center; */
-		/* padding: 1vh 1vw; */
 		font-size: 1em;
 		color: gray
 	}

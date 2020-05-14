@@ -28,7 +28,7 @@
 
 	<div class="imageWelcome" style="background-image: url('images/entrance/000040.JPG')">
 		<div class="infoDiv">
-			<p class="homeText">Hello,</p>
+			<p class="homeText">Hello, I'm Konstantin, nice to meet you</p>
 			<div>
 				<button class="enterButton" on:click={goToGallery}>
 				Come on in
@@ -49,7 +49,7 @@
 			color: white;
 			font-size: 4em;
 			margin: 0.5em;
-			width: 15vw;
+			width: 50vw;
 			justify-content: center;
 		}
 
